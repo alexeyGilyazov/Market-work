@@ -49,7 +49,7 @@ const productsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
-      .addCase(updateProduct.pending, state => {
+      .addCase(updateProduct.pending, (state, action) => {
         const updateProduct = action.payload
         const existingProduct = state.list.find(
           product => product._id === updateProduct._id
