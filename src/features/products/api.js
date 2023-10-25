@@ -1,46 +1,47 @@
-const api_url = 'http://localhost:8888/products';
+const api_url = "http://localhost:8888/products";
 
 export async function getProducts() {
   const response = await fetch(api_url);
   if (!response.ok) {
-    throw new Error(response.statusText + 'error get data');
+    throw new Error("Ошибка при получении данных!");
   }
   return response.json();
 }
 
-export async function addProducts(productsData) {
+export async function addProduct(productData) {
   const response = await fetch(api_url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(productsData),
+    body: JSON.stringify(productData),
   });
   if (!response.ok) {
-    throw new Error(response.statusText + 'error add data');
+    throw new Error("Ошибка при добавлении товара!");
   }
   return response.json();
 }
 
-export async function updateProducts(productsData) {
-  const response = await fetch(`${api_url}/${productsData._id}`, {
-    method: 'PUT',
+export async function updateProduct(productData) {
+  const response = await fetch(`${api_url}/${productData._id}`, {
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(productsData),
+    body: JSON.stringify(productData),
   });
   if (!response.ok) {
-    throw new Error(response.statusText + 'error update data');
+    throw new Error("Ошибка при обновлении товара!");
   }
+  return response.json();
 }
 
-export async function deleteProducts(productId) {
+export async function deleteProduct(productId) {
   const response = await fetch(`${api_url}/${productId}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
   if (!response.ok) {
-    throw new Error(response.statusText + 'error delete data');
+    throw new Error("Ошибка при удалении товара!");
   }
-  return productId
+  return productId;
 }
